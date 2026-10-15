@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 40px 16px;
+  background: #f1f5f9;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.boton {
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  color: #fff;
+  background: #2563eb;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  /* La transición se declara en el estado BASE: funciona al entrar y al salir */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* :focus-visible para usuarios de teclado (tecla Tab) */
+.boton:hover,
+.boton:focus-visible {
+  background: #1e40af;
+  transform: translateY(-3px);
+}
+
+/* Efecto de "presión" */
+.boton:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.galeria {
+  max-width: 900px;
+  margin: 50px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.tarjeta {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  /* Varias propiedades separadas por comas */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+}

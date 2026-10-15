@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 20px;
+  background: #0f172a;
+  font-family: Arial, sans-serif;
+}
+
+.hamburguesa {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;                 /* 6px de espacio + 4px de alto = 10px entre centros de línea */
+  width: 64px;
+  height: 64px;
+  padding: 0 14px;
+  background: #1e293b;
+  border: 2px solid #38bdf8;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hamburguesa:hover { background: #334155; }
+.hamburguesa:focus-visible { outline: 3px solid #f59e0b; outline-offset: 4px; }
+
+.linea {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  /* Las líneas giran sobre su propio centro */
+  transform-origin: center;
+  transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+/* Estado activo: se convierte en una "X" */
+.hamburguesa.activo .linea:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.hamburguesa.activo .linea:nth-child(2) { opacity: 0; }
+.hamburguesa.activo .linea:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.estado {
+  margin: 0;
+  color: #cbd5e1;
+}

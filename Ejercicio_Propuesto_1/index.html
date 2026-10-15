@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesto 1 - Menú lateral deslizable</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Los cinco elementos siguientes deben ser hermanos para que funcione el selector ~ -->
+  <input type="checkbox" id="toggle" class="toggle" aria-label="Abrir o cerrar el menú">
+  <label for="toggle" class="btn-menu">Menú</label>
+  <label for="toggle" class="fondo" aria-hidden="true"></label>
+
+  <nav class="sidebar" aria-label="Principal">
+    <a href="#inicio">Inicio</a>
+    <a href="#cursos">Cursos</a>
+    <a href="#proyectos">Proyectos</a>
+    <a href="#recursos">Recursos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <main class="contenido">
+    <h1>Menú lateral deslizable</h1>
+    <p>Pulsa el botón "Menú" para deslizar la barra lateral. Haz clic fuera de ella o vuelve a pulsar el botón para cerrarla.</p>
+  </main>
+</body>
+</html>

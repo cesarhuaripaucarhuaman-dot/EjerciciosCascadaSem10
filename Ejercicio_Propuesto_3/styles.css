@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  padding: 40px 16px;
+  background: #0f172a;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+h1 { margin: 0 0 32px; text-align: center; }
+
+/* Galería con CSS Grid */
+.galeria {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Contenedor: recorta la imagen al hacer zoom (overflow: hidden)
+   y tiene la ANIMACIÓN de entrada */
+.foto {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  background: #1e293b;
+  border-radius: 12px;
+  animation: entrada 0.7s ease-out both;
+}
+
+/* Retardos escalonados */
+.foto:nth-child(1) { animation-delay: 0.1s; }
+.foto:nth-child(2) { animation-delay: 0.25s; }
+.foto:nth-child(3) { animation-delay: 0.4s; }
+.foto:nth-child(4) { animation-delay: 0.55s; }
+.foto:nth-child(5) { animation-delay: 0.7s; }
+.foto:nth-child(6) { animation-delay: 0.85s; }
+
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Imagen: TRANSICIÓN de zoom. Va en un elemento distinto al de la animación
+   (figure vs img) para que no compitan por transform. */
+.foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.foto:hover img,
+.foto:focus-visible img {
+  transform: scale(1.1);
+}
+
+/* Texto descriptivo: aparece con opacity + translateY */
+.foto figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 18px 16px;
+  background: linear-gradient(transparent, rgba(15, 23, 42, 0.9));
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.foto:hover figcaption,
+.foto:focus-visible figcaption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.foto:focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }

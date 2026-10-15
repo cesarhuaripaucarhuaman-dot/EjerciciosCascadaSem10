@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #111827;
+  font-family: Arial, sans-serif;
+}
+
+/* Elemento PADRE: perspectiva + animación de entrada */
+.escena {
+  width: 280px;
+  height: 360px;
+  perspective: 900px;
+  animation: entrada 0.9s ease-out both;
+}
+
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Elemento HIJO: transición de giro.
+   Cada uno (animación y transición) actúa sobre un elemento distinto,
+   así no compiten por la propiedad transform. */
+.tarjeta {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+.escena:hover .tarjeta {
+  transform: rotateY(180deg);
+}
+
+.cara {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+  color: #fff;
+  border-radius: 16px;
+  /* Oculta la cara posterior cuando está girada */
+  backface-visibility: hidden;
+}
+
+.frente  { background: linear-gradient(135deg, #2563eb, #7c3aed); }
+/* El reverso parte girado 180° para quedar de frente cuando la tarjeta voltea */
+.reverso { background: linear-gradient(135deg, #059669, #0891b2); transform: rotateY(180deg); }

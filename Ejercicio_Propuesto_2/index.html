@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesto 2 - Ícono hamburguesa animado</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <button class="hamburguesa" type="button" aria-label="Abrir menú" aria-expanded="false">
+    <span class="linea"></span>
+    <span class="linea"></span>
+    <span class="linea"></span>
+  </button>
+  <p class="estado" aria-live="polite">Menú cerrado</p>
+
+  <script>
+    // JavaScript básico: alterna la clase "activo" al hacer clic
+    const boton = document.querySelector('.hamburguesa');
+    const estado = document.querySelector('.estado');
+
+    boton.addEventListener('click', () => {
+      const activo = boton.classList.toggle('activo');
+      boton.setAttribute('aria-expanded', activo);
+      estado.textContent = activo ? 'Menú abierto' : 'Menú cerrado';
+    });
+  </script>
+</body>
+</html>

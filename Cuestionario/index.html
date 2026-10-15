@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuestionario: Sesión 10</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <a class="volver" href="../index.html">Volver al menú</a>
+    <h1>Cuestionario de la sesión</h1>
+    <p>Respuestas a las cinco preguntas de la guía, con una justificación breve.</p>
+
+    <h2>1. ¿Qué es una transición CSS y en qué estado (base o :hover) conviene declararla? ¿Por qué?</h2>
+    <p>Una transición hace que el cambio de una propiedad CSS ocurra de forma gradual durante un intervalo de tiempo, en lugar de instantáneamente; se dispara cuando el elemento cambia de estado (<code>:hover</code>, <code>:focus</code>, <code>:active</code>, una clase). Conviene declararla en el estado <strong>base</strong>, porque así funciona en los dos sentidos: al entrar y al salir del estado. Si solo se declara en <code>:hover</code>, la entrada es suave pero la salida es brusca, porque el estado base no tiene transición.</p>
+
+    <h2>2. Las cuatro propiedades del atajo transition y un valor de cada una.</h2>
+    <ul>
+      <li><code>transition-property</code>: <code>transform</code> (también <code>background-color</code>, <code>all</code>).</li>
+      <li><code>transition-duration</code>: <code>0.3s</code> (o <code>300ms</code>).</li>
+      <li><code>transition-timing-function</code>: <code>ease-out</code> (también <code>linear</code>, <code>ease-in-out</code>, <code>cubic-bezier()</code>, <code>steps(4)</code>).</li>
+      <li><code>transition-delay</code>: <code>0.2s</code> (o <code>0s</code>).</li>
+    </ul>
+
+    <h2>3. Diferencia entre translate(), rotate(), scale() y skew(). ¿Qué papel cumple transform-origin?</h2>
+    <ul>
+      <li><code>translate(x, y)</code> desplaza el elemento.</li>
+      <li><code>rotate(ángulo)</code> lo gira.</li>
+      <li><code>scale(x, y)</code> aumenta o reduce su tamaño.</li>
+      <li><code>skew(x, y)</code> lo inclina.</li>
+    </ul>
+    <p>Ninguna altera el flujo del documento (los demás elementos no se mueven). <code>transform-origin</code> define el punto fijo de la transformación (por defecto <code>center center</code>): por ejemplo, con <code>bottom center</code> la aguja de un reloj gira desde su base y no desde su centro.</p>
+
+    <h2>4. ¿Qué se necesita para que una transformación 3D (ej. rotateY) muestre profundidad?</h2>
+    <ul>
+      <li><code>perspective</code>, en el elemento padre, fija la distancia del observador (menor valor, efecto más dramático, ej. 800px). Sin ella, la rotación se ve plana.</li>
+      <li><code>transform-style: preserve-3d</code> mantiene el espacio 3D de los hijos del elemento (por ejemplo, las caras de un cubo o de una tarjeta).</li>
+      <li><code>backface-visibility: hidden</code> oculta la cara posterior cuando el elemento está girado, para que no se vea al revés ni se superpongan las caras.</li>
+    </ul>
+
+    <h2>5. ¿Por qué transform y opacity en lugar de width o top? ¿Qué problema ocurre si una animación y una transición modifican transform en el mismo elemento y cómo se resuelve?</h2>
+    <p><code>transform</code> y <code>opacity</code> no obligan al navegador a recalcular el diseño de la página y aprovechan la GPU, así que la animación es fluida; <code>width</code>, <code>height</code>, <code>margin</code> o <code>top</code> provocan un nuevo cálculo de layout en cada fotograma.</p>
+    <p>Si una animación <code>@keyframes</code> y una transición modifican <code>transform</code> en el mismo elemento, la animación tiene prioridad y anula la transición. Se resuelve aplicando cada una a un elemento distinto (padre e hijo), como en la flip card: la animación de entrada en <code>.escena</code> y la transición del giro en <code>.tarjeta</code>.</p>
+  </main>
+</body>
+</html>

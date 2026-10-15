@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 24px;
+  background: #111827;
+  font-family: Arial, sans-serif;
+}
+
+/* PADRE: perspectiva (y zona de hover) */
+.escena {
+  width: 260px;
+  height: 260px;
+  display: grid;
+  place-items: center;
+  perspective: 800px;
+}
+
+/* INTERMEDIO: ampliación con TRANSICIÓN al pasar el cursor */
+.ampliar {
+  width: 160px;
+  height: 160px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.escena:hover .ampliar {
+  transform: scale(1.35);
+}
+
+/* HIJO: giro continuo con ANIMACIÓN @keyframes.
+   Transición (.ampliar) y animación (.cubo) están en elementos distintos,
+   así no compiten por transform. */
+.cubo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: girar 10s linear infinite;
+}
+
+/* Se detiene al pasar el cursor */
+.escena:hover .cubo {
+  animation-play-state: paused;
+}
+
+@keyframes girar {
+  from { transform: rotateX(-25deg) rotateY(0deg); }
+  to   { transform: rotateX(-25deg) rotateY(360deg); }
+}
+
+/* Las seis caras: rotateY / rotateX orientan la cara y translateZ la separa
+   del centro la mitad del lado (160px / 2 = 80px) */
+.cara {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.frente    { background: rgba(37, 99, 235, 0.85);  transform: translateZ(80px); }
+.atras     { background: rgba(124, 58, 237, 0.85); transform: rotateY(180deg) translateZ(80px); }
+.derecha   { background: rgba(5, 150, 105, 0.85);  transform: rotateY(90deg) translateZ(80px); }
+.izquierda { background: rgba(8, 145, 178, 0.85);  transform: rotateY(-90deg) translateZ(80px); }
+.arriba    { background: rgba(217, 119, 6, 0.85);  transform: rotateX(90deg) translateZ(80px); }
+.abajo     { background: rgba(225, 29, 72, 0.85);  transform: rotateX(-90deg) translateZ(80px); }
+
+.ayuda { margin: 0; color: #cbd5e1; }
+
+/* Accesibilidad (lo exige el enunciado): sin giro continuo; el cubo queda
+   quieto en un ángulo donde se ven tres caras */
+@media (prefers-reduced-motion: reduce) {
+  .cubo {
+    animation: none;
+    transform: rotateX(-25deg) rotateY(35deg);
+  }
+  .ampliar { transition-duration: 0.01ms; }
+}
